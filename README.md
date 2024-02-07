@@ -7,9 +7,11 @@
 
 | Temas | Tipo |
 |--------|-------|
-|1. PHP | C |
-|2. POO | B | 
+|1. POO | PHP Orientado a Objetos |
+|2. PDO | Objetos de Datos en PHP | 
+|3. MVC | Modelo Vista Controlador en PHP | 
+|4. Laravel | Framework en PHP | 
 
-![Hollow](http://tinyurl.com/bdvy2f2j) 
+![Hollow](http://tinyurl.com/5ap6cmzh) 
 
 
