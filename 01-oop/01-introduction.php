@@ -1,3 +1,6 @@
+
+
+
 <?php
 #Linear Programing //se da en cascada de arriba hacia abajo, resulta util en 
 $num1 = 54;
