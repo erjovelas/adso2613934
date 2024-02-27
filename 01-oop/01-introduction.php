@@ -1,5 +1,10 @@
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-Fundamentals</title>
+    <link rel="stylesheet" href="css/master.css">
 
 <?php
 #Linear Programing //se da en cascada de arriba hacia abajo, resulta util en 
@@ -76,4 +81,5 @@ echo "<br>La suma de {$sum->num1} y {$sum->num2} es: " . $sum->getResult();
 
 
     </main>
-
+    </body>
+    </html>
