@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-<style>
-        section {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-visibility</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        section{
             background-color: #0009;
             border-radius: 10px;
             display: flex;
@@ -16,7 +21,7 @@
 
             form {
                 border: 2px solid #fff6;
-                background-color: #fff3;
+                background-color: rgba(224, 15, 15, 0.2);
                 border-radius: 8px;
                 display: flex;
                 flex-direction: column;
@@ -46,28 +51,24 @@
 
                 }
 
+                table {
+                border-collapse: collapse;
+                tr {
+                    td {
+                        background-color:rgb(236, 222, 14);
+                        border: 1px solid #050504;
+                        padding: 8px;
+                    }
+                }
+                tr:nth-child(even) td:nth-child(even) {
+                    background-color: rgba(178, 236, 16, 0.2);
+                }
+                tr:nth-child(odd) td:nth-child(odd) {
+                    background-color: rgba(12, 130, 240, 0.2);
+                }
             }
         }
-    </style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03-visibility</title>
-    <link rel="stylesheet" href="css/master.css">
-    <style>
-        section {
-            background-color: bcsub;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            padding: 10px;
-
-            h2 {
-                margin: 0;
-            } 
-        }
+            
     </style>
 </head>
 
@@ -103,17 +104,21 @@
                 }
 
                 private function contentTable() {
-                    return '<tr>
-                                 <td></td>
-                            </tr>';
+                    for ($r=0; $r < $this->nr ; $r++) { 
+                        echo '<tr>';
+                        for ($c=0; $c < $this->nc; $c++) { 
+                            echo '<td></td>';
+                        }
+                        echo '</tr>';
+                    }
                 }
+
                 private function endTable() {
                     return '</table>';
                 }
+                
             }
 
-            $table = new Tablemaker(10, 8);
-            echo $table->drawTable();
         ?>
         <h2>Table maker</h2>
         <form action="" method="post">
@@ -129,6 +134,16 @@
             </label>
             <button> Make Table </button>
         </form>
+        <?php 
+            if  ($_POST) {
+                $nr = $_POST['nr'];
+                $nc = $_POST['nc'];
+
+                $table = new TableMaker($nr, $nc);
+                $table->drawTable();
+            }
+        
+        ?>
         </section>
     </main>
 </body>
