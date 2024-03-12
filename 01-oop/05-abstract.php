@@ -15,12 +15,38 @@
             gap: 1rem;
             padding: 10px;
 
+            table{
+                width: 100%; /* Ajusta la tabla al ancho del contenedor */
+                border-collapse: collapse;
+
+                thead {
+                    border-radius: 10px;
+                    background-color: rgb(121, 128, 134);
+                }
+                    tr:nth-child(even) {
+                        background-color: hsla(320, 63%, 71%, 0.3);
+                    }
+
+                    td, th {
+                        padding: 8px; /* Añade espacio interno a las celdas */
+                        text-align: center; /* Centra el texto en las celdas */
+                    }
+
+                }
+
             h2 {
                 margin: 0;
-            } 
+            }
+
+            img {
+                width: 60px; /* Tamaño deseado en píxeles */
+                height: auto; /* Esto asegura que la imagen se ajuste correctamente manteniendo su relación de aspecto */
+            }
+
             div.pks {
                 display: flex;
                 gap: 1rem;
+
                 div.pk {
                     background-repeat: no-repeat;
                     display: flex;
@@ -31,9 +57,6 @@
                     padding: 4px;
                     width: 141px;
 
-                    img{
-                        height: 250px;
-                    }
                     div.info {
                         background-color: #0009;
                         border-bottom: 2px solid #fffc;
@@ -46,6 +69,7 @@
                         padding: 4px;
                         transition: bottom 0.4s ease-in;
                         width: 128px;
+
                         span:nth-child(1) {
                             background-color: #0009;
                             color: #fff;
@@ -54,6 +78,11 @@
                         }
                     }
                 }
+
+                th{
+                    border:#fff;
+                }
+
                 div.pk:hover div.info {
                     bottom: 0;
                 }
@@ -69,10 +98,11 @@
         </a>
     </nav>
 <main>
-    <h1>05-Abstract</h1>
-    <section>
-       <?php
-            abstract class DataBase {
+<h1>05-Abstract</h1>
+        <section>
+            <?php
+            abstract class DataBase
+            {
                 // Atriburtes
                 protected $host;
                 protected $user;
@@ -80,41 +110,111 @@
                 protected $dbname;
                 protected $conx;
 
-                public function __construct($dbname,
-                                            $host='localhost',
-                                            $user='root',
-                                            $pass='') {
+                public function __construct(
+                    $dbname,
+                    $host = 'localhost',
+                    $user = 'root',
+                    $pass = ''
+                ) {
                     $this->host = $host;
                     $this->user = $user;
                     $this->pass = $pass;
                     $this->dbname = $dbname;
-
                 }
-                public function connect(){
+
+
+                public function connect()
+                {
                     try {
-                        $this->conx = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass);
-                        if($this->conx){
-                            echo "👩‍🦰";
+                        $this->conx = new PDO("mysql:host=$this->host;
+                        dbname=$this->dbname", $this->user, $this->pass);
+                        if ($this->conx) { 
+                            ;
                         }
-                        //code...
                     } catch (PDOException $e) {
-                        echo "Error: ". $e->getMessage();
-                        //throw $th;
+                        echo "Error: " . $e->getMessage();
                     }
-                    
+                  
+               //    try {
+               //     $this->conx = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass);
+                   // Habilitar el manejo de errores de PDO
+               //     $this->conx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+               //     echo "Conexión exitosa";
+               // } catch (PDOException $e) {
+               //     echo "Error: " . $e->getMessage();
+               // }
                 }
 
             }
-            class Pokemon extends Database {
 
+            class Pokemon extends DataBase
+            {
+                public function obtenerPokemons() {
+                    $query = "SELECT id, name, type, health, image FROM pokemons";
+                   // $resultado = $this->conx ->query($query);
+            
+                   // if ($resultado->num_rows > 0) {
+                   //     $pokemons = array();
+                   //     while ($fila = $resultado->fetch_assoc()) {
+                   //         $pokemons[] = $fila;
+                   //     }
+                   //     return $pokemons;
+                   // } else {
+                   //     return array();
+                   // }
+
+                   try {
+                    $stmt = $this->conx->query($query);
+                    $pokemons = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $pokemons;
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                    return array();
+                }
+
+                }
             }
 
             $db = new Pokemon('adso2613934');
             $db->connect();
 
 
-       ?>
-    </section>
+            $pokemons = $db->obtenerPokemons();
+
+            echo "<div class='pk'>" .
+                "<table>" .
+                "<thead>" .
+                    "<tr>" .
+                        "<th>Id</th>" .
+                        "<th>Name</th>" .
+                        "<th>Type</th>" .
+                        "<th>Health</th>" .
+                        "<th>Image</th>" .
+                    "</tr>" .
+                "</thead>" .
+                "<tbody> " ;
+        
+            foreach ($pokemons as $pokemon) {
+                    echo                
+                        "<tr> " .
+                            "<td>" . $pokemon['id'] . "</td>" .
+                            "<td>" . $pokemon['name'] . "</td>" .
+                            "<td>" . $pokemon['type'] . "</td>" .
+                            "<td>" . $pokemon['health'] . "</td>" .
+                            "<td>" .  "<img src='images/" . $pokemon['image'] . "'>" . "</td>" .
+                        "</tr>" ;
+             }
+
+             echo "</tbody>" .
+             "</table>" .
+             "</div>";
+
+            $db = new Pokemon('adso2613934');
+            $db->connect();
+
+
+            ?>
+        </section>
     </main>
 </body>
 
