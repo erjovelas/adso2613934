@@ -4,10 +4,10 @@
 :root{
     --ff-heading: "Lilita one", sans-serif;
     --ff-body: "Lexend", sans-serif;
-    --color-first:#181919;
-    --color-second:#1B1919;
-    --color-third:#616F39;
-    --color-fourth:#ffffff;
+    --color-first: #1B1919;
+    --color-second: #A7D129;
+    --color-third: #616F39;
+    --color-fourth: #ffffff;
 }
 
 /* ------------------
@@ -42,15 +42,81 @@ main.welcome{
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-block: 2.7rem;
-        margin-right: 1.3rem;
+        margin-block: 2.9rem;
+        margin-right: 1.2rem;
     }
-    section.slider{
+    section.owl-carousel{
+       div.owl-item {
         display: flex;
         justify-content: center;
-        align-items: center;
-        margin-top: 3.5rem;
-    }
+        img {
+            height: 306px;
+            width: 306px;
+        }
+       }
+       div.owl-nav {
+        position: relative;
+        top: -180px;
+        display: flex;
+        justify-content: space-between;
+        button {
+            transition: transform 0.2s ease-in;    
+            span{
+                display: flex;
+                height: 44px;
+                width: 34px;
+                text-indent: -9999px;
+            }
+        }
+        button:is(:hover){
+            background-color: transparent;
+        }
+        button.owl-prev {
+            span{
+                background: url(../images/btn-prev.svg) no-repeat center;
+            }
+        }
+        button.owl-prev:hover {
+            transform: scale(1.1) translateX(-4px);
+        }
+        button.owl-next {
+            span{
+                background: url(../images/btn-next.svg) no-repeat center;
+            }
+        }
+        button.owl-next:hover{
+            transform: scale(1.1) translateX(4px);
+        }
+       }
+       div.owl-dots{
+        position: relative;
+        /*border: 2px solid red;*/
+        top: -46px;
+        button{
+            transition:transform 0.2s ease-in;
+        }
+        button:is(:hover){
+            transform: scale(1.1); 
+        }
+        button.owl-dot{
+            span{
+                background-color: var(--color-first);
+                height: 16px;
+                width: 16px;
+            }
+        }
+        button.owl-dot.active,
+        button.owl-dot:is(:hover){
+            span{
+                background-color: var( --color-second);
+                height: 16px;
+                width: 16px;
+            }
+
+        }
+    }  
+}
+
     footer{
         display: flex;
         justify-content: center;
@@ -61,7 +127,7 @@ main.welcome{
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 6.7rem;
+            margin-top: 1.1rem;
             margin-left: rem;
             transition: all 0.4s ease-in;
             width: 300px;
