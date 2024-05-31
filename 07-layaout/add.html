@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameApp - Add</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/master.css">
+
+</head>
+
+<body>
+    <main class="add">
+        <header>
+            <a href="module-users.html" class="btn-back-r">
+                <img src="images/btn-back.svg" alt="Back">
+            </a>
+            <img src="images/title-add.svg" alt="">
+            <svg class="btn-burger" viewBox="0 0 100 100" width="80">
+                <path class="line top"
+                    d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20" />
+                <path class="line middle" d="m 70,50 h -40" />
+                <path class="line bottom"
+                    d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20" />
+            </svg>
+
+        </header>
+        <nav class="nav">
+            <menu class="menu-dashboard">
+                <div class="form-group">
+                    <img id="upload" class="mask" src="images/bg-signin-photo.svg" alt="Photo">
+                    <img class="border" src="images/shape-border-photo.svg" alt="Border">
+                </div>
+                <h4>Diana Lucia Iñiguez</h4>
+                <div class="admon">
+                    <img src="images/ico-admin-signin.svg" alt="my-profile">
+                    <h1>Administrator</h1>
+                </div>
+                <a class="profile" href="myprofile.html">
+                    <img src="images/ico-myprofile.svg" alt="my-profile">
+                    My Profile
+                </a>
+                <a href="dashboard.html">
+                    <img src="images/ico-dashboard.svg" alt="dashboard">
+                    Dashboard
+                </a>
+                <a href="index.html">
+                    <img src="images/ico-log-out.svg" alt="log-out">
+                    Log Out
+                </a>
+            </menu>
+        </nav>
+        </nav>
+        <section class="scroll">
+            <form action="module-users.html" method="get">
+                <div class="form-group">
+                    <img id="upload" class="mask" src="images/bg-upload-photo.svg" alt="Photo">
+                    <img class="border" src="images/shape-border-photo.svg" alt="Border">
+                    <input id="photo" type="file" name="photo" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <img src="images/ico-fullname.svg" alt="FullName">
+                        Full Name:
+                    </label>
+                    <input type="text" name="FullName" placeholder="Karina Monserrat Masache">    
+                </div>
+                <div class="form-group">
+                    <label>
+                        <img src="images/ico-email.svg" alt="Email">
+                        Email:
+                    </label>
+                    <input type="email" name="email" placeholder="karinamasache@gmail.com">    
+                </div>
+                <div class="form-group">
+                    <label>
+                        <img src="images/ico-phone.svg" alt="phone">
+                        Phone Number:                    </label>
+                    <input type="text" name="phonenumber" placeholder="3004205674">    
+                </div>
+                <div class="form-group">
+                    <label>
+                        <img src="images/ico-date.svg" alt="BirthDate">
+                        Birth Date:                    </label>
+                    <input type="text" name="birthdate" placeholder="23/03/1994">    
+                </div>
+                <div class="form-group">
+                    <label>
+                        <img src="images/ico-pass.svg" alt="Email">
+                        Password:
+                    </label>
+                    <img class="ico-eye" src="images/ico-eye.svg" alt="Eye">
+                    <input type="password" name="password" placeholder="dontmesswithmydog">    
+                </div>
+                <div class="form-group">
+                    <button type="submit">
+                        <img src="images/content-btn-add.svg" alt="Register">
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+
+    <script>
+     $('header').on('click','.btn-burger', function(){
+                $(this).toggleClass('active')
+                $('.nav').toggleClass('active')
+            });
+
+
+            //---------------------
+                           //el siguiente fragmento de codigo sirve para activar el ojo y poder visualizar la contraseña
+            //---------------------
+            $togglePass = false
+            $('section').on('click','.ico-eye', function(){
+
+                !$togglePass ? $(this).next().attr('type','text')
+                            : $(this).next().attr('type','password')
+            
+                !$togglePass ? $(this).attr('src', 'images/ico-eye-close.svg')
+                            : $(this).attr('src', 'images/ico-eye.svg')
+
+                $togglePass = !$togglePass
+            });
+            //---------------------
+            $('.border').click(function (e){
+                $('#photo').click()
+            })
+            $('#photo').change(function (e){
+                e.preventDefault()
+                let reader = new FileReader()
+                reader.onload = function(evt){
+                    $('#upload').attr('src', event.target.result)
+                }
+                 reader.readAsDataURL(this.files[0])  
+            })
+            //---------------------
+    </script>
+</body>
+
+</html>
