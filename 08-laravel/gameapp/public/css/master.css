@@ -1413,7 +1413,7 @@ main.module-games {
                     width: 32px;
                     height: 32px;
                     margin-left: -5rem;
-                    margin-top: 0.2rem;
+                    margin-top: 0rem;
                 }
 
                 h1 {
@@ -1424,6 +1424,76 @@ main.module-games {
                     margin-top: -2.5rem;
                 }
 
+            }
+
+            div.options{
+                display: flex;
+                gap:0.8rem;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0.6rem;
+                margin-top: 3rem;
+
+                /* a.pdf{
+
+                    img{
+
+                    }
+                } */
+
+                input#qsearch{
+                    margin-top: 1rem;
+                    background-color: var(--color-fourth);
+                    border-color: 4px solid #000;
+                    border-radius: 5px;
+                    margin-bottom: 0.6rem;
+                    outline: none;
+                    padding:  0.4rem;
+                    transition: transform 0.4s ease-in, width 0.4s ease-in;
+                    width: 80px;                    
+                    &:focus {
+                        width: 200px;
+                        /* transform: scaleX(1.5); */
+                    }
+
+                    color: var(--color-first);
+                    font-family: var(--ff-heading);
+                    font-weight: 700;
+                    font-size: 18px;
+
+                    &::placeholder{
+                        color: var(--color-first);
+                        font-family: var(--ff-heading);
+                        font-weight: 700;
+                        font-size: 18px;
+                    }
+
+                } 
+                
+                /* a.excel{
+                    
+                    img{
+
+                    }
+                } */
+            }
+
+            /* HTML: <div class="loader"></div> */
+            .loader {
+                margin-left: 0rem;
+                width: 50px;
+                padding: 8px;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                background: #0d0e0e;
+                    --_m: 
+                conic-gradient(#0000 10%,#000),
+                linear-gradient(#000 0 0) content-box;
+                -webkit-mask: var(--_m);
+                    mask: var(--_m);
+                -webkit-mask-composite: source-out;
+                    mask-composite: subtract;
+                animation: l3 1s infinite linear;
             }
 
             input {
@@ -1478,6 +1548,7 @@ main.module-games {
                     grid-template-rows: 80px 40px;
 
                     div {
+                        
                         .border {
                             cursor: pointer;
                             position: relative;
@@ -1485,9 +1556,6 @@ main.module-games {
                             top: 15px;
                             z-index: 100;
                         }
-
-
-
                 
                         .mask {
                             mask-image: url(../images/shape-photo1.svg);
@@ -1499,7 +1567,7 @@ main.module-games {
                         img {
                             width: 60px;
                             height: 60px;
-                            margin-top: 1.3rem;
+                            margin-top: 1.6rem;
                             margin-left: -2.3rem;
                         }
 
@@ -1578,8 +1646,8 @@ main.module-games {
     }
 
     footer {
-
-        div.footer-users {
+        /* border: 2px solid orangered; */
+        /* div.footer-users {
             display: grid;
             place-items: stretch;
             place-content: center;
@@ -1613,6 +1681,68 @@ main.module-games {
 
             a.arrow-right:hover {
                 transform: scale(1.1) translatex(4px);
+            }
+        } */
+
+        div.footer-mod-user{
+ /* display: flex;
+            flex-direction: row;
+            align-items: start;
+            justify-content: space-between; */
+            display: grid;
+            place-items: stretch;
+            place-content: space-between;
+            grid-template-columns: 60px 110px 60px;
+            grid-template-rows: 60px;
+            margin-top: -4rem;
+
+            a:is(:link, :visited) {
+                background: url(../images/btn.png) no-repeat center;
+                height: 60px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: -4rem;
+                margin-top: 17rem;
+                transition: all 0.4s ease-in;
+                width: 300px;
+            }
+
+            a.arrow-left{                
+        /* border: 2px solid orangered; */
+                background: url(../images/btn-prev.svg) no-repeat center;
+                margin-left: -0.9rem;
+                margin-top: 4rem;
+                width: 40px;
+            }
+
+          a.arrow-left:hover {
+            
+                transform: scale(1.1) translateX(-4px);
+            }
+
+            h4{                
+        /* border: 2px solid orangered; */
+                color: var(--color-first);
+                font-family: var(--ff-heading);
+                font-weight: 700;
+                font-size: 24px;
+                margin-top: 5rem;
+                margin-left: 1rem;
+                text-align: center;
+                width: 5rem;
+            }
+
+            a.arrow-right {                
+        /* border: 2px solid orangered; */
+                    background: url(../images/btn-next.svg) no-repeat center;
+                    margin-left: 3rem;
+                    margin-top: 4rem;
+                    width: 40px;
+            }
+
+            a.arrow-right:hover {
+                transform: scale(1.1) translateX(4px);
             }
         }
     }

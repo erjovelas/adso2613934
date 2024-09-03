@@ -4,10 +4,12 @@ namespace App\Exports;
  
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
  
-class UserExport 
+class UserExport implements FromView, WithStyles, WithColumnWidths
 {
 public function view(): View
 {
@@ -27,11 +29,11 @@ public function columnWidths(): array
     ];
 }
  
-// public function styles(Worksheet $sheet)
-// {
-//     return [
-//         1 => ['font' => ['bold' => true, 'size' => 16]],
-//     ];
-// }
+public function styles(Worksheet $sheet)
+ {
+     return [
+         1 => ['font' => ['bold' => true, 'size' => 16]],
+     ];
+ }
  
 }

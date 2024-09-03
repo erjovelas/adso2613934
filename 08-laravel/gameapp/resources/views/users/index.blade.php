@@ -38,7 +38,7 @@
             </div>
             <div id="list">
 
-                
+
                 <div class="loader"></div>
                 <div id="list">
                     @foreach ($users as $user)
@@ -69,12 +69,20 @@
         </article>
     </section>
     <footer>
-        <div class="paginate">
-
+        <div class="footer-mod-user">
+            {{-- Renderiza la vista de paginación personalizada --}}
             {{ $users->links('layouts.paginator') }}
-            <a class="arrow-left" href="view.html"></a>
-            <!--<h4>01/03</h4>
-                            <a class="arrow-right" href="view.html"></a> -->
+    
+            {{-- Enlace a la página anterior --}}
+            <a href="{{ $users->previousPageUrl() }}" class="arrow-left">
+            </a>
+    
+            {{-- Muestra el número de página actual y el total de páginas --}}
+            <h4>{{ $users->currentPage() }} DE {{ $users->lastPage() }}</h4>
+    
+            {{-- Enlace a la página siguiente --}}
+            <a href="{{ $users->nextPageUrl() }}" class="arrow-right">
+            </a>
         </div>
     </footer>
 
@@ -83,79 +91,79 @@
 @section('js')
     <script>
         $(document).ready(function() {
-        $('.loader').hide()
-        //-------------------------------------------------
-        $('header').on('click', '.btn-burger', function() {
-            $(this).toggleClass('active')
-            $('.nav').toggleClass('active')
-        });
-        //---------------------------------------
-        @if (session('message'))
-            Swal.fire({
-                position: "top",
-                title: '{{ session('message') }}',
-                icon: "success",
-                toast: true,
-                timer: 5000
-            })
-        @endif
-
-        //-------------------------------------------------
-        //este sirve para el ojito de la contraseña
-        //-------------------------------------------------
-        $togglePass = false
-        $('section').on('click', '.ico-eye', function() {
-
-            !$togglePass ? $(this).next().attr('type', 'text') :
-                $(this).next().attr('type', 'password')
-
-                !$togglePass ? $(this).attr('src', 'images/ico-eye-close.svg') :
-                $(this).attr('src', 'images/ico-eye.svg')
-
-            $togglePass = !$togglePass
-        });
-        //--------------------------------------------
-        $('figure').on('click', '.btn-delete', function() {
-            $fullname = $(this).attr('data-fullname')
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!" + $fullname,
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $(this).next().submit()
-                }
+            $('.loader').hide()
+            //-------------------------------------------------
+            $('header').on('click', '.btn-burger', function() {
+                $(this).toggleClass('active')
+                $('.nav').toggleClass('active')
             });
-        })
+            //---------------------------------------
+            @if (session('message'))
+                Swal.fire({
+                    position: "top",
+                    title: '{{ session('message') }}',
+                    icon: "success",
+                    toast: true,
+                    timer: 5000
+                })
+            @endif
 
-        //---------------------
-        $('body').on('keyup', '#qsearch', function(e) {
-            e.preventDefault()
-            $query = $(this).val()
-            $token = $('input[name=_token]').val()
-            $model = 'users'
+            //-------------------------------------------------
+            //este sirve para el ojito de la contraseña
+            //-------------------------------------------------
+            $togglePass = false
+            $('section').on('click', '.ico-eye', function() {
 
-            $('.loader').show()
-            $('#list').hide()
+                !$togglePass ? $(this).next().attr('type', 'text') :
+                    $(this).next().attr('type', 'password')
 
-            setTimeout(() => {
-                $.post($model + '/search', {
-                        q: $query,
-                        _token: $token
-                    },
-                    function(data) {
-                        $('#list').html(data)
-                        $('.loader').hide()
-                        $('#list').fadeIn('slow')
+                    !$togglePass ? $(this).attr('src', 'images/ico-eye-close.svg') :
+                    $(this).attr('src', 'images/ico-eye.svg')
+
+                $togglePass = !$togglePass
+            });
+            //--------------------------------------------
+            $('figure').on('click', '.btn-delete', function() {
+                $fullname = $(this).attr('data-fullname')
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!" + $fullname,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).next().submit()
                     }
-                )
-            }, 1000);
+                });
+            })
 
-        })
-    });
+            //---------------------
+            $('body').on('keyup', '#qsearch', function(e) {
+                e.preventDefault()
+                $query = $(this).val()
+                $token = $('input[name=_token]').val()
+                $model = 'users'
+
+                $('.loader').show()
+                $('#list').hide()
+
+                setTimeout(() => {
+                    $.post($model + '/search', {
+                            q: $query,
+                            _token: $token
+                        },
+                        function(data) {
+                            $('#list').html(data)
+                            $('.loader').hide()
+                            $('#list').fadeIn('slow')
+                        }
+                    )
+                }, 1000);
+
+            })
+        });
     </script>
 @endsection

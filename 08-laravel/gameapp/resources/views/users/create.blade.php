@@ -30,7 +30,7 @@
 
         <div class="form-group">
             <img id="upload" class="mask" src="{{asset('images/bg-upload-photo.svg')}}" alt="Photo">
-                <img class="border" src="{{asset('images/shape-border-photo.svg')}}" alt="Border">
+            <img class="border" src="{{asset('images/shape-border-photo.svg')}}" alt="Border">
             <input id="photo" type="file" name="photo" accept="image/*">
         </div>
                 <div class="form-group">

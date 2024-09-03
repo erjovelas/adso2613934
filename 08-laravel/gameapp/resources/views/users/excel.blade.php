@@ -23,7 +23,7 @@
         <td>{{ $user->email }}</td>
         <td>{{ $user->phone }}</td>
         <td>{{ $user->role }}</td>
-        <td><img src="{{ public_path().'/images/'.$user->photo }}" width="40px"></td>
+        {{-- <td><img src="{{ public_path().'/images/'.$user->photo }}" width="40px"></td> --}}
     </tr>
         
     @endforeach

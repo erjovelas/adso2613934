@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
+// use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use App\Exports\UserExport;
-use Maatwebsite\Excel\Facades\Excel as Excel;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 
 class UserController extends Controller
@@ -19,7 +20,7 @@ class UserController extends Controller
     {
         //$users = User::all();
         $users = User::paginate(20);
-        return view('users.index')->with('users', $users);
+        return view('users.index')->with ('users', $users);
     }
 
     /**
@@ -133,6 +134,6 @@ class UserController extends Controller
     }
 
     public function excel(){
-        return Excel::download(new UserExport, 'allusers.xlsx');
+        return \Excel::download(new UserExport, 'allusers.xlsx');
     }
 }
