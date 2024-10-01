@@ -57,7 +57,7 @@
                     <h4>Games</h4>
                 </div>
                 <div class="btn-view">
-                    <a href="module-games.html" class="btn-more">
+                    <a href="{{ url('games') }}" class="btn-more">
                         view
                         <img class="view" src="images/ico-more-dashboard.svg" alt="">  
                     </a>

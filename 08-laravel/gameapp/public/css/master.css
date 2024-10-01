@@ -1560,8 +1560,12 @@ main.module-games {
                         .mask {
                             mask-image: url(../images/shape-photo1.svg);
                             mask-repeat: no-repeat;
+                            mask-position: center top;
                             object-fit: cover;
+                            align-self: center;
                             position: relative;
+                            height: 80px;
+                            width: 80px;
                         }
 
                         img {
