@@ -31,7 +31,7 @@
         <div class="form-group">
             <img id="upload" class="mask" src="{{asset('images/bg-upload-photo.svg')}}" alt="Photo">
             <img class="border" src="{{asset('images/shape-border-photo.svg')}}" alt="Border">
-            <input id="photo" type="file" name="photo" accept="image/*">
+            <input id="photo" type="file" name="image" accept="image/*">
         </div>
         {{-- <div class="form-group">
             <img id="upload" class="mask" src="images/bg-categories-photo.svg" alt="Photo">
@@ -40,23 +40,23 @@
         </div> --}}
         <div class="form-group">
             <label>
-                <img src="{{ asset('images/ico-name.svg') }}" alt="Name">
-                Super Metroid
+                <img src="{{ asset('images/ico-name.svg') }}" alt="title">
+                Title
             </label>
-            <input type="text" name="Name-category" placeholder="Super Metroid">    
+            <input type="text" name="title" value="{{ old('title') }}" placeholder="Super Metroid">    
         </div>
         <div class="form-group">
             <label>
-                <img src="{{ asset('images/ico-manufacturer.svg') }}" alt="manufacturer">
-                Manufacturer:
+                <img src="{{ asset('images/ico-manufacturer.svg') }}" alt="developer">
+                Developer
             </label>
-            <input type="text" name="manufacturer" placeholder="Microsoft">    
+            <input type="text" name="developer" value="{{ old('developer') }}" placeholder="Microsoft">    
         </div>
         <div class="form-group">
             <label>
                 <img src="{{ asset('images/ico-date.svg') }}" alt="Date">
                 Release Date:                    </label>
-            <input type="text" name="release-date" placeholder="21/08/2015">    
+            <input type="text" name="releasedate" value="{{ old('releasedate') }}" placeholder="21/08/2015">    
         </div>
         <div class="form-group">
             <label>
@@ -71,6 +71,31 @@
             </select>
             {{-- <input type="text" name="game" placeholder="Nintendo">        --}}
         </div>
+        <div class="form-group">
+            <label>
+                <img src="{{ asset('images/ico-date.svg') }}" alt="Price">
+                Price:                    </label>
+            <input type="number" name="price" value="{{ old('price') }}" placeholder="58">    
+        </div>
+        <div class="form-group">
+            <label>
+                <img src="{{ asset('images/ico-manufacturer.svg') }}" alt="genre">
+                Genre:
+            </label>
+            <input type="text" name="genre" placeholder="Action">    
+        </div>
+        <select name="slider">
+            <option value="">Select...</option>
+            <option value="1" @if (old('slider')== 1) selected @endif>Active</option>
+            <option value="0" @if (old('slider')== '0') selected @endif>Inactive</option>
+        </select>
+        <div class="form-group">
+            <label>
+                <img src="{{ asset('images/ico-description.svg') }}" alt="Description">
+                Description:
+            </label>
+            <textarea name="description" placeholder="Lorem, ipsum dolor sit amet consectetur">{{ old('description') }}</textarea>
+        </div>    
         <div class="form-group">
             <button type="submit">
                 <img src="{{ asset('images/content-btn-add.svg') }}" alt="Register">

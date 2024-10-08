@@ -4,7 +4,7 @@
 
 @section('content')
 <header>
-            <a href="{{ url('users')}}" class="btn-back">
+            <a href="{{ url('games')}}" class="btn-back">
                 <img src="{{ asset('images/btn-back.svg')}}" alt="Back">
             </a>
             <img src="{{ asset('images/title-show.svg')}}" alt="">
@@ -21,24 +21,23 @@
         <section class="profile-group">   
             <article>
             <div class="form-group">
-                <img id="upload" class="mask" src="{{ asset('images'). '/' . Auth::user()->photo }}" alt="Photo">
+                <img id="upload" class="mask" src="{{ asset('images'). '/' . $game->image }}" alt="Photo">
                 <img class="border" src="{{ asset('images/shape-border-photo.svg')}}" alt="Border">
             </div>
-            <h3>{{ $user->fullname }}</h3>
-            <h4>{{ $user->email }}</h4>
+            <h3>{{ $game->title }}</h3>
             <div class="admon">
                 <img class="ico-admon" src="{{ asset('images/ico-information.svg')}}" alt="administrator">
             </div>
-            <p>{{ $user->role }}</p>     
+            <p>{{ $game->role }}</p>     
            
             <div class="profile">  
                 <div>
                     <img src="{{ asset('images/ico-information.svg')}}" alt="administrator">
-                    <p>{{ $user->document }}</p>
+                    <p>{{ $game->document }}</p>
                 </div>
                 <div>
                     <img src="{{ asset('images/ico-information.svg')}}" alt="administrator">
-                    <p>{{ $user->phone }}</p>
+                    <p>{{ $game->phone }}</p>
                 </div>
                 <div>
                     <img src="{{ asset('images/ico-information.svg')}}" alt="administrator">
@@ -46,11 +45,11 @@
                 </div>
                 <div>
                     <img src="{{ asset('images/ico-information.svg')}}" alt="administrator">
-                    <p>{{ $user->gender }}</p>
+                    <p>{{ $game->gender }}</p>
                 </div>
                 <div>
                     <img src="{{ asset('images/ico-information.svg')}}" alt="administrator">
-                    <p>{{ $user->birthdate }}</p>
+                    <p>{{ $game->birthdate }}</p>
                 </div>
                 <div>
                     <img src="{{ asset('images/ico-information.svg')}}" alt="administrator">

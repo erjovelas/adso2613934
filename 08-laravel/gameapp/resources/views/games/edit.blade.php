@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'GameApp - Edit User')
+@section('title', 'GameApp - Edit Game')
 @section('class', 'edit')
 
 @section('content')
     <header>
-        <a href="{{ url('users') }}" class="btn-back">
+        <a href="{{ url('games') }}" class="btn-back">
             <img src="{{ asset('images/btn-back.svg') }}" alt="Back">
         </a>
         <img src="{{ asset('images/title-edit.svg') }}" alt="">
@@ -18,7 +18,7 @@
     @include('layouts.menuburger')
 
     <section class="scroll">
-        <form action="{{ url('users/' . $user->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('games/' . $game->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             @if (count($errors->all()) > 0)
@@ -28,27 +28,27 @@
             @endif
 
             <div class="form-group">
-                <img id="upload" class="mask" src="{{ asset('images/' . $user->photo) }}" alt="Photo">
+                <img id="upload" class="mask" src="{{ asset('images/' . $game->image) }}" alt="Photo">
                 <img class="border" src="{{ asset('images/shape-border-photo.svg') }}" alt="Border">
                 <input id="photo" type="file" name="photo" accept="image/*">
-                <input type="hidden" name="originphoto" value="{{ $user->photo }}">
-                <input type="hidden" name="id" value="{{ $user->id }}">
+                <input type="hidden" name="originimage" value="{{ $game->photo }}">
+                <input type="hidden" name="id" value="{{ $game->id }}">
             </div>
             <div class="form-group">
                 <label>
-                    <img src="{{ asset('images/ico-fullname.svg') }}" alt="FullName">
-                    Full Name:
+                    <img src="{{ asset('images/ico-fullname.svg') }}" alt="title">
+                    Title:
                 </label>
-                <input type="text" name="fullname" value="{{ old('fullname', $user->fullname) }}"
-                    placeholder="Karina Monserrat Masache">
+                <input type="text" name="title" value="{{ old('title', $game) }}"
+                    placeholder="Super Metroid">
             </div>
             <div class="form-group">
                 <label>
-                    <img src="{{ asset('images/ico-document.svg') }}" alt="Document">
-                    Document:
+                    <img src="{{ asset('images/ico-manufacturer.svg') }}" alt="Developer">
+                    Developer:
                 </label>
-                <input type="text" name="document" value="{{ old('document', $user->document) }}"
-                    placeholder="1053835222">
+                <input type="text" name="developer" value="{{ old('developer') }}"
+                    placeholder="Sonic">
             </div>
             <div class="form-group">
                 <label>

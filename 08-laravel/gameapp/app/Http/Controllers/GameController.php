@@ -6,6 +6,7 @@ use App\Models\Game;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\GameRequest;
+use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
@@ -34,14 +35,18 @@ class GameController extends Controller
     {
         // dd($request->all());
         if ($request->hasFile('image')) {
-            $photo = time() . '.' . $request->photo->extension();
-            $request->photo->move(public_path('images'), $photo);
+            $image = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $image);
+        }else{
+            $image = $request->originimage;
         }
         $game = new Game;
         $game->title = $request->title;
+        $game->image = $image;
         $game->developer = $request->developer;
         $game->releasedate = $request->releasedate;
         $game->category_id = $request->category_id;
+        $game->user_id = Auth::user()->id;
         $game->price = $request->price;
         $game->genre = $request->genre;
         $game->slider = $request->slider;
@@ -49,7 +54,7 @@ class GameController extends Controller
 
         if ($game->save()) {
             return redirect('games')
-                ->with('message', 'The game : ' . $game->name . 'was succesfully added!');
+                ->with('message', 'The game : ' . $game->title . 'was succesfully updated!');
         }
     }
 
@@ -58,7 +63,8 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //
+        return view(view: 'game.show')
+            ->with(key: 'game', value: $game);
     }
 
     /**
@@ -66,7 +72,10 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        $cats = category::all();
+        return view('games.edit') 
+            ->with('games',$game)
+            ->with('cats', $cats);
     }
 
     /**
